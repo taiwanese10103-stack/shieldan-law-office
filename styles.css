@@ -13,3 +13,25 @@
 @media(max-width:900px){.nav{gap:16px}.nav>a{font-size:12px}.intro-grid{grid-template-columns:130px 1fr 260px;gap:25px}.team-grid{gap:45px}.contact-grid{gap:45px}}
 @media(max-width:720px){.container{width:min(100% - 36px,560px)}.topbar{height:30px;font-size:8px}.topbar span:last-child{display:none}.header{height:72px}.brand-mark{width:38px;height:38px}.brand-copy strong{font-size:17px}.menu-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:0;padding:10px}.menu-toggle span{width:24px;height:1px;background:var(--green)}.nav{display:none;position:absolute;top:72px;left:0;right:0;background:#fbfaf7;padding:20px 25px 25px;box-shadow:0 12px 20px #0001;flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav>a{padding:13px 0;border-bottom:1px solid #eee}.nav .nav-cta{padding:14px 16px;margin-top:12px;text-align:center}.hero{height:650px;min-height:0}.hero-content{padding-top:105px}.hero h1{font-size:42px}.hero-lead{font-size:13px}.hero-note{top:555px}.section{padding:75px 0}.intro-grid{grid-template-columns:1fr;gap:25px}.section-kicker{gap:7px}.section-kicker b{font-size:18px}.intro-image{height:300px;margin-top:10px}.section-heading{display:block;margin-bottom:30px}.section-heading h2{font-size:31px}.section-heading>p{margin-top:14px}.practice-grid{grid-template-columns:1fr 1fr}.practice-card{padding:23px 18px;min-height:275px}.practice-card h3{font-size:17px}.practice-card p{font-size:12px}.statement{padding:75px 0}.statement h2{font-size:36px}.statement-bottom{display:block}.statement-bottom span{display:block;margin-top:20px}.value-list article{grid-template-columns:42px 1fr;gap:10px}.value-list article>b{display:none}.value-list h3{font-size:19px}.value-list p{font-size:12px}.team-grid{grid-template-columns:1fr;gap:35px}.team-photo{height:330px}.team h2{font-size:36px}.insight-grid{grid-template-columns:1fr;gap:32px}.insight-art{height:210px}.contact-grid{grid-template-columns:1fr;gap:35px}.contact-form{padding:23px 18px;gap:15px}.footer-top{align-items:flex-start;gap:18px;flex-wrap:wrap}.footer-top>p{order:3;width:100%;margin:0}.footer-bottom{display:block;line-height:2}.footer-bottom span{display:block}.footer-bottom span:last-child{margin-top:6px}}
 @media(max-width:420px){.practice-grid{grid-template-columns:1fr}.practice-card{min-height:240px}.contact-form{grid-template-columns:1fr}.contact-form label{grid-column:1/-1}.hero h1{font-size:36px}.hero-actions{gap:18px}.btn{padding:14px 16px;gap:15px}}
+
+
+/* Consultation booking form upgrade */
+.contact-form{align-items:start}
+.contact-form .form-intro{grid-column:1/-1;border-bottom:1px solid #52645a;padding-bottom:15px;margin-bottom:2px}
+.form-intro span{font:10px 'DM Sans',sans-serif;letter-spacing:2px;color:#d0b783}
+.form-intro p{font-size:12px;line-height:1.8;color:#c2cbc4;margin:8px 0 0}
+.contact-form label>b,.consent b{color:#dfbd80;font-weight:500}
+.contact-form .full-field{grid-column:1/-1}
+.contact-form input[type="date"]{color-scheme:dark}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#d0b783;box-shadow:0 0 0 2px rgba(208,183,131,.12)}
+.privacy-notice{padding:14px 16px;background:#172a23;border-left:2px solid #c8ad78}
+.privacy-notice strong{font-size:12px;color:#e0c99b}
+.privacy-notice p{font-size:11px;line-height:1.9;color:#c1cbc3;margin:7px 0 0}
+.contact-form .consent{display:flex;flex-direction:row;align-items:flex-start;gap:10px;font-size:11px;line-height:1.8;color:#c1cbc3}
+.contact-form .consent input{flex:0 0 15px;width:15px;height:15px;margin:3px 0 0;accent-color:#c8ad78}
+.contact-form .submit-btn{min-width:190px}
+.contact-form .form-note{font-size:10px;line-height:1.8;color:#aab6ad;margin:0}
+.contact-form .form-note.notice{color:#e4c98f}
+@media(max-width:720px){
+  .contact-form .form-intro,.contact-form .full-field{grid-column:1/-1}
+}

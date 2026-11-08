@@ -112,15 +112,83 @@
         <div class="contact-copy"><p class="eyebrow light">LET'S TALK</p><h2>讓我們從一次對話，<br><em>開始釐清問題。</em></h2><p>請簡述您希望諮詢的事項，我們將依您留下的聯絡方式與您聯繫。請勿於表單中提供身分證字號、帳戶資料或其他高度敏感資訊。</p>
           <div class="contact-detail"><span>OFFICE</span><p>盾安律師事務所</p><span>PHONE</span><p>（請填入正式聯絡電話）</p><span>EMAIL</span><p>（請填入正式電子郵件）</p><span>ADDRESS</span><p>（請填入事務所地址）</p></div>
         </div>
-        <form class="contact-form" id="contactForm">
-          <label>您的姓名<input name="name" type="text" placeholder="請輸入姓名" required></label>
-          <label>聯絡電話<input name="phone" type="tel" placeholder="請輸入電話" required></label>
-          <label>電子郵件<input name="email" type="email" placeholder="name@example.com"></label>
-          <label>諮詢類別<select name="topic" required><option value="">請選擇</option><option>民事訴訟與爭議</option><option>不動產與土地</option><option>刑事辯護與告訴</option><option>家事與繼承</option><option>企業法律顧問</option><option>契約審閱與撰擬</option><option>其他</option></select></label>
-          <label>簡述需求<textarea name="message" rows="4" placeholder="請簡要說明您希望諮詢的事項（請勿填寫敏感個資）"></textarea></label>
-          <label class="consent"><input type="checkbox" required><span>我已閱讀並同意事務所依個人資料保護法及隱私權政策處理本表單資料。</span></label>
-          <button class="btn btn-gold submit-btn" type="submit">送出諮詢需求 <span>↗</span></button>
-          <p class="form-note" id="formNote">此為前端示範表單。正式收件需串接電子郵件或表單服務。</p>
+        <!-- 上線前：將 action 中的 REPLACE_WITH_OFFICE_EMAIL 改成事務所正式收件信箱 -->
+        <form class="contact-form" id="contactForm"
+              action="https://formsubmit.co/REPLACE_WITH_OFFICE_EMAIL"
+              method="POST">
+          <input type="hidden" name="_subject" value="盾安律師事務所｜網站預約諮詢需求">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_honey" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="_replyto" value="">
+
+          <div class="form-intro">
+            <span>CONSULTATION REQUEST</span>
+            <p>填寫以下資料提出預約需求，事務所將再與您確認可安排的時段。</p>
+          </div>
+
+          <label>您的姓名 <b>*</b>
+            <input name="姓名" type="text" placeholder="請輸入姓名" autocomplete="name" maxlength="40" required>
+          </label>
+          <label>聯絡電話 <b>*</b>
+            <input name="電話" type="tel" placeholder="例如：0912-345-678" autocomplete="tel" maxlength="25" required>
+          </label>
+          <label>電子郵件
+            <input name="電子郵件" type="email" placeholder="name@example.com" autocomplete="email" maxlength="100">
+          </label>
+          <label>諮詢類別 <b>*</b>
+            <select name="諮詢類別" required>
+              <option value="">請選擇諮詢類別</option>
+              <option>民事訴訟與爭議</option>
+              <option>不動產與土地</option>
+              <option>刑事辯護與告訴</option>
+              <option>家事與繼承</option>
+              <option>企業法律顧問</option>
+              <option>契約審閱與撰擬</option>
+              <option>其他／尚不確定</option>
+            </select>
+          </label>
+          <label>希望預約日期 <b>*</b>
+            <input id="preferredDate" name="希望預約日期" type="date" required>
+          </label>
+          <label>希望預約時段 <b>*</b>
+            <select name="希望預約時段" required>
+              <option value="">請選擇時段</option>
+              <option>上午 09:00–12:00</option>
+              <option>下午 13:00–17:00</option>
+              <option>晚上 18:00–20:00（需另行確認）</option>
+              <option>時間可彈性配合</option>
+            </select>
+          </label>
+          <label>諮詢方式 <b>*</b>
+            <select name="諮詢方式" required>
+              <option value="">請選擇</option>
+              <option>事務所現場諮詢</option>
+              <option>電話諮詢</option>
+              <option>視訊諮詢（需另行確認）</option>
+            </select>
+          </label>
+          <label>方便聯絡時段
+            <select name="方便聯絡時段">
+              <option>不限</option>
+              <option>上午</option>
+              <option>下午</option>
+              <option>晚上</option>
+            </select>
+          </label>
+          <label class="full-field">簡述諮詢需求
+            <textarea name="需求簡述" rows="4" maxlength="500" placeholder="請以簡短文字說明諮詢方向，最多 500 字。請勿填寫身分證字號、完整案情、帳戶資料或上傳證據文件。"></textarea>
+          </label>
+
+          <div class="privacy-notice full-field">
+            <strong>個人資料提醒</strong>
+            <p>您提供的資料將用於聯繫及處理本次預約需求。請僅提供聯繫所需資訊；送出前請確認事務所已備妥並公開正式的個資蒐集告知及隱私權政策。</p>
+          </div>
+          <label class="consent full-field">
+            <input type="checkbox" name="個資告知與同意" value="同意" required>
+            <span>我已閱讀事務所的個資蒐集告知事項，並同意為處理本次預約需求而使用上述資料。 <b>*</b></span>
+          </label>
+          <button class="btn btn-gold submit-btn" type="submit">送出預約需求 <span>↗</span></button>
+          <p class="form-note full-field" id="formNote">送出後仍須由事務所確認時段；本表單不代表預約已成立，也不構成律師委任或法律意見。</p>
         </form>
       </div>
     </section>

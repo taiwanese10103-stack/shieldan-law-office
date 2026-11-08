@@ -15,22 +15,42 @@ document.querySelectorAll('.nav a').forEach(link => {
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// 預約日期不可選擇今天以前的日期。
+const preferredDate = document.getElementById('preferredDate');
+if (preferredDate) {
+  const today = new Date();
+  const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+    .toISOString().slice(0, 10);
+  preferredDate.min = localToday;
+}
+
 const form = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const data = new FormData(form);
-  const subject = encodeURIComponent(`盾安律師事務所網站諮詢：${data.get('topic')}`);
-  const body = encodeURIComponent(
-    `姓名：${data.get('name')}\n電話：${data.get('phone')}\n電子郵件：${data.get('email') || '未提供'}\n諮詢類別：${data.get('topic')}\n需求簡述：${data.get('message') || '未提供'}`
-  );
-  // 上線前請將下方信箱替換成事務所正式收件信箱。
-  const officeEmail = 'contact@example.com';
-  if (officeEmail === 'contact@example.com') {
-    formNote.textContent = '表單欄位驗證成功。正式上線前，請先在 script.js 將 contact@example.com 改成事務所收件信箱。';
-    formNote.classList.add('notice');
-    return;
-  }
-  window.location.href = `mailto:${officeEmail}?subject=${subject}&body=${body}`;
-});
+if (form) {
+  form.addEventListener('submit', (event) => {
+    const formAction = form.getAttribute('action') || '';
+
+    // 防止尚未設定收件信箱就送出，避免預約資料寄送失敗。
+    if (formAction.includes('REPLACE_WITH_OFFICE_EMAIL')) {
+      event.preventDefault();
+      formNote.textContent = '網站管理者尚未設定事務所收件信箱。請先在 index.html 將 REPLACE_WITH_OFFICE_EMAIL 改成正式電子郵件地址。';
+      formNote.classList.add('notice');
+      formNote.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      form.reportValidity();
+      return;
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = '資料送出中…';
+    }
+    formNote.textContent = '正在送出預約需求，請稍候。送出後仍須等待事務所確認時段。';
+  });
+}
